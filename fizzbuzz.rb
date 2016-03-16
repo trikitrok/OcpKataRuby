@@ -1,58 +1,49 @@
 class FizzBuzz
-  def initialize sayers
-    @sayers = sayers
+  def initialize sayer
+    @sayer = sayer
   end
 
   def say number
-    @sayers.reduce("") do |acc, sayer|
-      sayer.say(number, acc)
-    end
+    @sayer.say(number, "")
   end
 end
 
-class Translator
+class SameNumber
   def say number, acc
-    return add(number, acc) if predicate(number, acc)
+    return number.to_s if acc == ""
     acc
   end
 end
 
-class SameNumber < Translator
-  def add number, acc
-    number.to_s
+class Fizz
+  def initialize sayer
+    @sayer = sayer
   end
 
-  def predicate number, acc
-    acc == ""
-  end
-end
-
-class Fizz < Translator
-  def add number, acc
-    acc + "Fizz"
-  end
-
-  def predicate number, acc
-    number % 3 == 0
+  def say number, acc
+    acc += "Fizz" if number % 3 == 0
+    @sayer.say(number, acc)
   end
 end
 
-class Buzz < Translator
-  def add number, acc
-    acc + "Buzz"
+class Buzz
+  def initialize sayer
+    @sayer = sayer
   end
 
-  def predicate number, acc
-    number % 5 == 0
+  def say number, acc
+    acc += "Buzz" if number % 5 == 0
+    @sayer.say(number, acc)
   end
 end
 
-class Bang < Translator
-  def add number, acc
-    acc + "Bang"
+class Bang
+  def initialize sayer
+    @sayer = sayer
   end
 
-  def predicate number, acc
-    number % 7 == 0
+  def say number, acc
+    acc += "Bang" if number % 7 == 0
+    @sayer.say(number, acc)
   end
 end

@@ -42,11 +42,6 @@ describe "FizzBuzz" do
   end
 
   def sayer
-    FizzBuzz.new([
-                   Fizz.new,
-                   Buzz.new,
-                   Bang.new,
-                   SameNumber.new
-    ])
+    FizzBuzz.new(Fizz.new(Buzz.new(Bang.new(SameNumber.new))))
   end
 end
