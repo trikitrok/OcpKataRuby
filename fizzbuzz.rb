@@ -15,35 +15,35 @@ class SameNumber
   end
 end
 
-class Fizz
-  def initialize sayer
-    @sayer = sayer
+class GivenNumber
+  def initialize number
+    @number = number
   end
 
-  def say number, acc
-    acc += "Fizz" if number % 3 == 0
-    @sayer.say(number, acc)
-  end
-end
-
-class Buzz
-  def initialize sayer
-    @sayer = sayer
-  end
-
-  def say number, acc
-    acc += "Buzz" if number % 5 == 0
-    @sayer.say(number, acc)
+  def true? num
+    num == @number
   end
 end
 
-class Bang
-  def initialize sayer
+class MultipleOf
+  def initialize divisor
+    @divisor = divisor
+  end
+
+  def true? number
+    number % @divisor == 0
+  end
+end
+
+class Translation
+  def initialize word, predicate, sayer
     @sayer = sayer
+    @word = word
+    @predicate = predicate
   end
 
   def say number, acc
-    acc += "Bang" if number % 7 == 0
+    acc += @word if @predicate.true?(number)
     @sayer.say(number, acc)
   end
 end

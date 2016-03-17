@@ -41,7 +41,29 @@ describe "FizzBuzz" do
     expect(sayer.say(3*5*7*2)).to eq("FizzBuzzBang")
   end
 
+  it "says hello given 11" do
+    expect(sayer.say(11)).to eq("hello")
+  end
+
   def sayer
-    FizzBuzz.new(Fizz.new(Buzz.new(Bang.new(SameNumber.new))))
+    FizzBuzz.new(
+      Translation.new(
+        "hello",
+        GivenNumber.new(11),
+        Translation.new(
+          "Fizz", 
+          MultipleOf.new(3),
+          Translation.new(
+            "Buzz", 
+            MultipleOf.new(5),
+            Translation.new(
+              "Bang", 
+              MultipleOf.new(7),
+              SameNumber.new
+            )
+          )
+        )
+      )
+    )
   end
 end
